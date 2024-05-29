@@ -1,0 +1,38 @@
+task: llm
+base_model: teknium/OpenHermes-2.5-Mistral-7B
+project_name: autotrain-ArthurHeyes-NoLora-Mistral7B
+log: tensorboard
+backend: local
+
+data:
+  path: DrAgOn200233/ArthurHayes
+  train_split: train
+  valid_split: null
+  chat_template: null
+  column_mapping:
+    text_column: text
+
+params:
+  trainer: sft
+  block_size: 1024
+  epochs: 8
+  batch_size: 8
+  lr: 2e-4
+  weight_decay: 0.01
+  warmup_raio: 0.1
+  peft: true
+  lora_r: 16 #@param {type:"number"}
+  lora_alpha: 32 #@param {type:"number"}
+  lora_dropout: 0.05 #@param {type:"number"}
+  quantization: int4
+  mixed_precision: fp16
+  target_modules: all-linear
+  padding: right
+  optimizer: adamw_torch
+  scheduler: linear
+  gradient_accumulation: 2
+
+hub:
+  username: DrAgOn200233
+  token: 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
+  push_to_hub: true

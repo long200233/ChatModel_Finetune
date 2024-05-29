@@ -1,0 +1,7 @@
+datasets
+transformers
+autotrain-advanced
+accelerate
+# deepspeed
+
+# pip install datasets transformers autotrain-advanced accelerate 
